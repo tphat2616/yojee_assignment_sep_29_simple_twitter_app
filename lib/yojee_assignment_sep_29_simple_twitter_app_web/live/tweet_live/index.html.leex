@@ -1,0 +1,19 @@
+<h1>Timeline</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.FormComponent,
+    id: @tweet.id || :new,
+    title: @page_title,
+    action: @live_action,
+    tweet: @tweet,
+    return_to: Routes.tweet_index_path(@socket, :index) %>
+<% end %>
+
+
+  <div id="tweets">
+    <%= for tweet <- @tweets do %>
+      <%= live_component @socket, YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.TweetComponent, id: tweet.id, tweet: tweet %>
+    <% end %>
+  </div>
+
+<button class="tweet" style="background-color: white;padding: 0 5px 0 5px"><%= live_patch "New Tweet", to: Routes.tweet_index_path(@socket, :new) %></button>
