@@ -1,0 +1,3 @@
+defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.PageView do
+  use YojeeAssignmentSep29SimpleTwitterAppWeb, :view
+end
