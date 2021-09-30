@@ -13,10 +13,10 @@ config :yojee_assignment_sep_29_simple_twitter_app,
 # Configures the endpoint
 config :yojee_assignment_sep_29_simple_twitter_app, YojeeAssignmentSep29SimpleTwitterAppWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "qU2m0bc8PngubcqVQIBUq4triWWmNu2ILzjjtVOPOc8ftycm33au2OV6SJ12+suq",
+  secret_key_base: "5j1cemdKwzmoPYrUNLg6kEfedshwLmJXjq0SD2JLP8wj5XHXixqSnAHzZjUoLluc",
   render_errors: [view: YojeeAssignmentSep29SimpleTwitterAppWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: YojeeAssignmentSep29SimpleTwitterApp.PubSub,
-  live_view: [signing_salt: "/ACIxXA9"]
+  live_view: [signing_salt: "GWqb3ahs"]
 
 # Configures Elixir's Logger
 config :logger, :console,

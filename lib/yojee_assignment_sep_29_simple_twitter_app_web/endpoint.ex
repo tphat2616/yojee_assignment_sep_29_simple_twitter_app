@@ -7,7 +7,7 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_yojee_assignment_sep_29_simple_twitter_app_key",
-    signing_salt: "qEvcSuTP"
+    signing_salt: "E2tSIfXZ"
   ]
 
   socket "/socket", YojeeAssignmentSep29SimpleTwitterAppWeb.UserSocket,
