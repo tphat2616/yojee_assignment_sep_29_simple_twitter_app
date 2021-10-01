@@ -10,7 +10,7 @@
 <% end %>
 
 
-  <div id="tweets">
+  <div id="tweets" phx-update="replace">
     <%= for tweet <- @tweets do %>
       <%= live_component @socket, YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.TweetComponent, id: tweet.id, tweet: tweet %>
     <% end %>
