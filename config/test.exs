@@ -7,7 +7,7 @@ use Mix.Config
 # Run `mix help test` for more information.
 config :yojee_assignment_sep_29_simple_twitter_app, YojeeAssignmentSep29SimpleTwitterApp.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "123456",
   database: "yojee_assignment_sep_29_simple_twitter_app_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

@@ -6,8 +6,8 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.TimelineTest do
   describe "tweets" do
     alias YojeeAssignmentSep29SimpleTwitterApp.Timeline.Tweet
 
-    @valid_attrs %{body: "some body", creator: "some creator", retweets_count: 42}
-    @update_attrs %{body: "some updated body", creator: "some updated creator", retweets_count: 43}
+    @valid_attrs %{body: "some body"}
+    @update_attrs %{body: "some updated body"}
     @invalid_attrs %{body: nil, creator: nil, retweets_count: nil}
 
     def tweet_fixture(attrs \\ %{}) do
@@ -32,8 +32,8 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.TimelineTest do
     test "create_tweet/1 with valid data creates a tweet" do
       assert {:ok, %Tweet{} = tweet} = Timeline.create_tweet(@valid_attrs)
       assert tweet.body == "some body"
-      assert tweet.creator == "some creator"
-      assert tweet.retweets_count == 42
+      assert tweet.creator == "Anonymous"
+      assert tweet.retweets_count == 0
     end
 
     test "create_tweet/1 with invalid data returns error changeset" do
@@ -44,8 +44,8 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.TimelineTest do
       tweet = tweet_fixture()
       assert {:ok, %Tweet{} = tweet} = Timeline.update_tweet(tweet, @update_attrs)
       assert tweet.body == "some updated body"
-      assert tweet.creator == "some updated creator"
-      assert tweet.retweets_count == 43
+      assert tweet.creator == "Anonymous"
+      assert tweet.retweets_count == 0
     end
 
     test "update_tweet/2 with invalid data returns error changeset" do

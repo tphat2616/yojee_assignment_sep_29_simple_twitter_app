@@ -42,3 +42,10 @@ To start your Phoenix server:
   * Phoenix framework + Elixir
   * Phoenix LiveView 
   * Phoenix PubSub
+
+## Unit Testing
+
+  * Test app module: `mix test test/yojee_assignment_sep_29_simple_twitter_app/`
+  * Test webapp module: `mix test test/yojee_assignment_sep_29_simple_twitter_app_web/`
+  * Test entire module: `mix test`
+
