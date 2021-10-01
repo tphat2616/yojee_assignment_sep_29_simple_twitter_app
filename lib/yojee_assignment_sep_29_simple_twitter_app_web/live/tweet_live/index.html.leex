@@ -16,4 +16,7 @@
     <% end %>
   </div>
 
-<button class="tweet" style="background-color: white;padding: 0 5px 0 5px"><%= live_patch "New Tweet", to: Routes.tweet_index_path(@socket, :new) %></button>
+<button class="tweet-button"><%= live_patch "New Tweet", to: Routes.tweet_index_path(@socket, :new) %></button>
+<button class="tweet-button button-2" phx-click="create_1k_tweets">Create 1k tweets</button>
+<button class="tweet-button button-2" phx-click="create_1k_tweets">Create 1M tweets</button>
+<button class="tweet-button button-2" phx-click="truncate_table">Truncate table</button>

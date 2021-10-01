@@ -7,6 +7,7 @@ To start your Phoenix server:
   * Install Node.js dependencies with `npm install` inside the `assets` directory
   * Start Phoenix endpoint with `iex -S mix phx.server`
   * Testing with unit tests: `mix test`
+  * Run over default processes: `iex --erl "+P 1_000_000" -S mix`
 
 ## Recommended environments
 

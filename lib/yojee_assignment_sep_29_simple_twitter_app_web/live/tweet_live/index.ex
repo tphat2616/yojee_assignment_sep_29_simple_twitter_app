@@ -15,17 +15,18 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.Index do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
+  defp apply_action(socket, :new, _params) do
+    socket
+    |> assign(:page_title, "New Tweet")
+    |> assign(:tweet, %Tweet{})
+  end
+
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Tweet")
     |> assign(:tweet, Timeline.get_tweet!(id))
   end
 
-  defp apply_action(socket, :new, _params) do
-    socket
-    |> assign(:page_title, "New Tweet")
-    |> assign(:tweet, %Tweet{})
-  end
 
   defp apply_action(socket, :index, _params) do
     socket
@@ -38,6 +39,18 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.Index do
     tweet = Timeline.get_tweet!(id)
     {:ok, _} = Timeline.delete_tweet(tweet)
 
+    {:noreply, assign(socket, :tweets, list_tweets())}
+  end
+
+  @impl true
+  def handle_event("create_1k_tweets", _params, socket) do
+    Timeline.create_1_000_tweet()
+    {:noreply, assign(socket, :tweets, list_tweets())}
+  end
+
+  @impl true
+  def handle_event("truncate_table", _params, socket) do
+    Timeline.truncate_tweets_table()
     {:noreply, assign(socket, :tweets, list_tweets())}
   end
 

@@ -120,4 +120,16 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
                    |> Repo.update_all(inc: [retweets_count: 1])
     broadcast({:ok, tweet}, :tweet_updated)
   end
+
+  def create_1_000_tweet do
+    for _x <- 1..1_000 do
+        spawn(fn ->
+            create_tweet(%{body: "Test#{:rand.uniform(1000)}"})
+        end)
+    end
+  end
+
+  def truncate_tweets_table() do
+    Repo.query!("TRUNCATE TABLE tweets")
+  end
 end
