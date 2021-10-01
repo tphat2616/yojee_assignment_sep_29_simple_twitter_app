@@ -36,3 +36,9 @@ To start your Phoenix server:
   * how the code is organized, best practices, data structures and a basic
     documentation about running the code (readme.md), implementation details and design
     choices.
+
+## Tech Stack
+
+  * Phoenix framework + Elixir
+  * Phoenix LiveView 
+  * Phoenix PubSub
