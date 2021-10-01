@@ -121,10 +121,18 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
     broadcast({:ok, tweet}, :tweet_updated)
   end
 
-  def create_1_000_tweet do
+  def create_1_000_tweets do
     for _x <- 1..1_000 do
         spawn(fn ->
             create_tweet(%{body: "Test#{:rand.uniform(1000)}"})
+        end)
+    end
+  end
+
+  def create_1_000_000_tweets do
+    for _x <- 1..1_000_000 do
+        spawn(fn ->
+            :rpc.cast(:"b@127.0.0.1", :"Elixir.GateWay", :create_tweet, [%{body: "Test#{:rand.uniform(1000)}"}])
         end)
     end
   end

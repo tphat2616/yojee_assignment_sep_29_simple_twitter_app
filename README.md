@@ -8,6 +8,9 @@ To start your Phoenix server:
   * Start Phoenix endpoint with `iex -S mix phx.server`
   * Testing with unit tests: `mix test`
   * Run over default processes: `iex --erl "+P 1_000_000" -S mix`
+  * Open RPC between 2 node: 
+    - Node 1: `iex --name a@172.0.0.1 --cookie cookie_string -S mix`
+    - Node 2: `iex --name b@172.0.0.1 --cookie cookie_string -S mix`
 
 ## Recommended environments
 

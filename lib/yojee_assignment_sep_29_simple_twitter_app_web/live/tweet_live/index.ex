@@ -44,7 +44,13 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.Index do
 
   @impl true
   def handle_event("create_1k_tweets", _params, socket) do
-    Timeline.create_1_000_tweet()
+    Timeline.create_1_000_tweets()
+    {:noreply, assign(socket, :tweets, list_tweets())}
+  end
+
+  @impl true
+  def handle_event("create_1m_tweets", _params, socket) do
+    Timeline.create_1_000_000_tweets()
     {:noreply, assign(socket, :tweets, list_tweets())}
   end
 
