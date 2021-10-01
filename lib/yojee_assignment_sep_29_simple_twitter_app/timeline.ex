@@ -18,7 +18,7 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
 
   """
   def list_tweets do
-    Repo.all(Tweet)
+    Repo.all(from t in Tweet, order_by: [desc: t.retweets_count, desc: t.inserted_at])
   end
 
   @doc """
@@ -53,6 +53,7 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
     %Tweet{}
     |> Tweet.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:tweet_created)
   end
 
   @doc """
@@ -71,6 +72,7 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
     tweet
     |> Tweet.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:tweet_updated)
   end
 
   @doc """
@@ -87,6 +89,7 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
   """
   def delete_tweet(%Tweet{} = tweet) do
     Repo.delete(tweet)
+    |> broadcast(:tweet_deleted)
   end
 
   @doc """
@@ -100,5 +103,21 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
   """
   def change_tweet(%Tweet{} = tweet, attrs \\ %{}) do
     Tweet.changeset(tweet, attrs)
+  end
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(YojeeAssignmentSep29SimpleTwitterApp.PubSub, "tweets_lobby")
+  end
+
+  defp broadcast({:error, _reason} = error, _event), do: error
+  defp broadcast({:ok, tweet}, event) do
+    Phoenix.PubSub.broadcast(YojeeAssignmentSep29SimpleTwitterApp.PubSub, "tweets_lobby", {event, tweet})
+    {:ok, tweet}
+  end
+
+  def increase_retweets_count(%Tweet{id: id}) do
+    {1, [tweet]} = from(t in Tweet, where: t.id == ^id, select: t) 
+                   |> Repo.update_all(inc: [retweets_count: 1])
+    broadcast({:ok, tweet}, :tweet_updated)
   end
 end

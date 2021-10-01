@@ -6,6 +6,7 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
+    if connected?(socket), do: Timeline.subscribe()
     {:ok, assign(socket, :tweets, list_tweets())}
   end
 
@@ -37,6 +38,21 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.Index do
     tweet = Timeline.get_tweet!(id)
     {:ok, _} = Timeline.delete_tweet(tweet)
 
+    {:noreply, assign(socket, :tweets, list_tweets())}
+  end
+
+  @impl true
+  def handle_info({:tweet_created, _tweet}, socket) do
+    {:noreply, assign(socket, :tweets, list_tweets())}
+  end
+
+  @impl true
+  def handle_info({:tweet_updated, _tweet}, socket) do
+    {:noreply, assign(socket, :tweets, list_tweets())}
+  end
+
+  @impl true
+  def handle_info({:tweet_deleted, _tweet}, socket) do
     {:noreply, assign(socket, :tweets, list_tweets())}
   end
 

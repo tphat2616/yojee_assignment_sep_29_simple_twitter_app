@@ -1,6 +1,8 @@
 defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.TweetComponent do
   use YojeeAssignmentSep29SimpleTwitterAppWeb, :live_component
 
+  alias YojeeAssignmentSep29SimpleTwitterApp.Timeline
+
   def render(assigns) do
     ~L"""
     <div id="post-<%= @tweet.id %>" class="tweet">
@@ -17,7 +19,7 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.TweetComponent do
 
       <div class="row">
         <div class="column tweet-button-column">
-          <a href="#" phx-click="repost" phx-target="<%= @myself %>">
+          <a href="#" phx-click="retweet" phx-target="<%= @myself %>">
             Retweet
           </a>
           <span><%= @tweet.retweets_count %></span>
@@ -35,13 +37,8 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.TweetComponent do
     """
   end
 
-  def handle_event("like", _, socket) do
-    # Chirp.Timeline.inc_likes(socket.assigns.post)
-    {:noreply, socket}
-  end
-
-  def handle_event("repost", _, socket) do
-    # Chirp.Timeline.inc_reposts(socket.assigns.post)
+  def handle_event("retweet", _, socket) do
+    Timeline.increase_retweets_count(socket.assigns.tweet)
     {:noreply, socket}
   end
 end
