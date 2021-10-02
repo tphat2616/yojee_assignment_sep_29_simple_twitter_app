@@ -127,6 +127,8 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
             create_tweet(%{body: "Test#{:rand.uniform(1000)}"})
         end)
     end
+    {:ok, %Tweet{}}
+    |> broadcast(:create_1_000_tweets)
   end
 
   def create_1_000_000_tweets do
@@ -139,6 +141,8 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
 
   def truncate_tweets_table() do
     Repo.query!("TRUNCATE TABLE tweets")
+    {:ok, %Tweet{}}
+    |> broadcast(:truncate_table)
   end
 
   def paginate_tweets(params \\ []) do

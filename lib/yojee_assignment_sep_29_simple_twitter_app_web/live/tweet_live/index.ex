@@ -83,4 +83,16 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.Index do
     page = Timeline.paginate_tweets()
     {:noreply, assign(socket, tweets: page.entries)}
   end
+
+  @impl true
+  def handle_info({:truncate_table, _tweet}, socket) do
+    page = Timeline.paginate_tweets()
+    {:noreply, assign(socket, tweets: page.entries)}
+  end
+
+  @impl true
+  def handle_info({:create_1_000_tweets, _tweet}, socket) do
+    page = Timeline.paginate_tweets()
+    {:noreply, assign(socket, tweets: page.entries)}
+  end
 end
