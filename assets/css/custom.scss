@@ -37,3 +37,16 @@
   width: 5px;
   height: 5px;
 }
+.pagination, li{
+  display: inline;
+  list-style-type: none;
+  margin: 10px;
+}
+li > a {
+  color: red;
+}
+.navi{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

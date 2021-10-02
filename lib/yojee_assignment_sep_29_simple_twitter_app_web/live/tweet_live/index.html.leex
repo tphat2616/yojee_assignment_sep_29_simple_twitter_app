@@ -9,14 +9,16 @@
     return_to: Routes.tweet_index_path(@socket, :index) %>
 <% end %>
 
-
-  <div id="tweets">
-    <%= for tweet <- @tweets do %>
-      <%= live_component @socket, YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.TweetComponent, id: tweet.id, tweet: tweet %>
-    <% end %>
-  </div>
+<div id="tweets">
+  <%= for tweet <- @tweets do %>
+    <%= live_component @socket, YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.TweetComponent, id: tweet.id, tweet: tweet %>
+  <% end %>
+</div>
 
 <button class="tweet-button"><%= live_patch "New Tweet", to: Routes.tweet_index_path(@socket, :new) %></button>
 <button class="tweet-button button-2" phx-click="create_1k_tweets">Create 1k tweets</button>
 <button class="tweet-button button-2" phx-click="create_1k_tweets">Create 1M tweets</button>
 <button class="tweet-button button-2" phx-click="truncate_table">Truncate table</button>
+<div class="navi">
+  <%= pagination_links @page, view_style: :foundation %>
+</div>

@@ -140,4 +140,10 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
   def truncate_tweets_table() do
     Repo.query!("TRUNCATE TABLE tweets")
   end
+
+  def paginate_tweets(params \\ []) do
+    Tweet
+    |> order_by([t], [desc: t.retweets_count, desc: t.inserted_at])
+    |> Repo.paginate(params)
+  end
 end

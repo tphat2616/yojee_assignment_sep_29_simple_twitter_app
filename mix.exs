@@ -20,7 +20,7 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.MixProject do
   def application do
     [
       mod: {YojeeAssignmentSep29SimpleTwitterApp.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :scrivener_html]
     ]
   end
 
@@ -46,7 +46,9 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:scrivener_ecto, "~> 2.7"},
+      {:scrivener_html, ">= 1.4.1"}
     ]
   end
 

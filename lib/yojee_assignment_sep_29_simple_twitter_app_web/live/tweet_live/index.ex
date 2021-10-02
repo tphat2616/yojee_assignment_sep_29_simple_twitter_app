@@ -1,13 +1,16 @@
 defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.Index do
   use YojeeAssignmentSep29SimpleTwitterAppWeb, :live_view
+  import Scrivener.HTML
 
   alias YojeeAssignmentSep29SimpleTwitterApp.Timeline
   alias YojeeAssignmentSep29SimpleTwitterApp.Timeline.Tweet
+  alias YojeeAssignmentSep29SimpleTwitterApp.Repo
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(params, _session, socket) do
     if connected?(socket), do: Timeline.subscribe()
-    {:ok, assign(socket, :tweets, list_tweets())}
+    page = Timeline.paginate_tweets(params)
+    {:ok, assign(socket, tweets: page.entries, page: page)}
   end
 
   @impl true
@@ -38,44 +41,46 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     tweet = Timeline.get_tweet!(id)
     {:ok, _} = Timeline.delete_tweet(tweet)
-
-    {:noreply, assign(socket, :tweets, list_tweets())}
+    page = Timeline.paginate_tweets()
+    {:noreply, assign(socket, tweets: page.entries)}
   end
 
   @impl true
-  def handle_event("create_1k_tweets", _params, socket) do
+  def handle_event("create_1k_tweets", params, socket) do
     Timeline.create_1_000_tweets()
-    {:noreply, assign(socket, :tweets, list_tweets())}
+    page = Timeline.paginate_tweets(params)
+    {:noreply, assign(socket, tweets: page.entries)}
   end
 
   @impl true
-  def handle_event("create_1m_tweets", _params, socket) do
+  def handle_event("create_1m_tweets", params, socket) do
     Timeline.create_1_000_000_tweets()
-    {:noreply, assign(socket, :tweets, list_tweets())}
+    page = Timeline.paginate_tweets(params)
+    {:noreply, assign(socket, tweets: page.entries)}
   end
 
   @impl true
-  def handle_event("truncate_table", _params, socket) do
+  def handle_event("truncate_table", params, socket) do
     Timeline.truncate_tweets_table()
-    {:noreply, assign(socket, :tweets, list_tweets())}
+    page = Timeline.paginate_tweets(params)
+    {:noreply, assign(socket, tweets: page.entries)}
   end
 
   @impl true
   def handle_info({:tweet_created, _tweet}, socket) do
-    {:noreply, assign(socket, :tweets, list_tweets())}
+    page = Timeline.paginate_tweets()
+    {:noreply, assign(socket, tweets: page.entries)}
   end
 
   @impl true
   def handle_info({:tweet_updated, _tweet}, socket) do
-    {:noreply, assign(socket, :tweets, list_tweets())}
+    page = Timeline.paginate_tweets()
+    {:noreply, assign(socket, tweets: page.entries)}
   end
 
   @impl true
   def handle_info({:tweet_deleted, _tweet}, socket) do
-    {:noreply, assign(socket, :tweets, list_tweets())}
-  end
-
-  defp list_tweets do
-    Timeline.list_tweets()
+    page = Timeline.paginate_tweets()
+    {:noreply, assign(socket, tweets: page.entries)}
   end
 end
