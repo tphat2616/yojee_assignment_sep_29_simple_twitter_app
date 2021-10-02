@@ -20,7 +20,7 @@ To start your Phoenix server:
 
 ## Problem
 
-  * The goal of this exercise is to Implement a very basic version of Twitter.
+  * The goal of this exercise is to implement a very basic version of Twitter.
 
 ## Points to consider
 
@@ -43,13 +43,16 @@ To start your Phoenix server:
 
 ## Tech Stack
 
-  * Phoenix framework + Elixir
-  * Phoenix LiveView 
-  * Phoenix PubSub
+  * Phoenix framework + Elixir.
+  * Phoenix LiveView.
+  * Phoenix PubSub.
+  * Erlang-OTP/rpc.
+  * Scrivener for pagination.
+  * Gigalixir for releasing live production (built on top of Heroku).
 
-## Unit Testing
+## Run Unit Tests
 
+  * Test entire module: `mix test`
   * Test app module: `mix test test/yojee_assignment_sep_29_simple_twitter_app/`
   * Test webapp module: `mix test test/yojee_assignment_sep_29_simple_twitter_app_web/`
-  * Test entire module: `mix test`
 
