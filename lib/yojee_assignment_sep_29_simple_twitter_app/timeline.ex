@@ -140,11 +140,23 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
     |> broadcast(:create_1_000_tweets)
   end
 
+  @doc """
+  Passing create 1m tweets to gate way node through RPC.
+
+  ## Examples
+    * Test function call between 2 node:
+      Node.spawn_link :"gate_way@DESKTOP-08N4P6P", fn -> GateWay.hello end
+    * Test rpc between 2 node:
+      :rpc.call(:"gate_way@DESKTOP-08N4P6P", Timeline, :create_tweet, [%{body: "Test"}])
+    * Test cast rpc between 2 node:
+      :rpc.cast(:"gate_way@DESKTOP-08N4P6P", Timeline, :create_tweet, [%{body: "Test"}])
+
+  """
   def create_1_000_000_tweets do
     for _x <- 1..1_000_000 do
       spawn(fn ->
-        :rpc.cast(:"b@127.0.0.1", :"Elixir.GateWay", :create_tweet, [
-          %{body: "Test#{:rand.uniform(1000)}"}
+        :rpc.cast(:"gate_way@DESKTOP-08N4P6P", Timeline, :create_tweet, [
+          %{body: "Test#{:rand.uniform(1_000_000)}"}
         ])
       end)
     end
