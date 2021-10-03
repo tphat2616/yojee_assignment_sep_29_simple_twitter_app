@@ -1,6 +1,6 @@
 <section class="phx-hero">
   <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Peace of mind from prototype to production</p>
+  <p>This is prototype of basic version of Twitter</p>
 
   <form>
     <datalist id="results">
@@ -8,10 +8,8 @@
         <option value="<%= app %>"><%= app %></option>
       <% end %>
     </datalist>
-    <button class="tweet-button button-2">
-      <%= live_patch class: "", to: Routes.tweet_index_path(@socket, :index) do %>
-          >> Go to Timeline >>
-      <% end %>
-    </button>
+    <%= live_patch class: "tweet-button-dashboard", to: Routes.tweet_index_path(@socket, :index) do %>
+        >> Go to Timeline >>
+    <% end %>
   </form>
 </section>
