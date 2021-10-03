@@ -1,28 +1,5 @@
 # Yojee's assignment sep-29: simple twitter app
 
-## Git Repo
-
-  * Repo `yojee_assignment_sep_29_simple_twitter_app` for web server. 
-  * Repo `gate_way` for Endpoint Server.
-
-## To start your Phoenix server
-
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `iex -S mix phx.server`
-
-## Run nodes:
-
-  * Run web server: `iex --sname app --cookie aaa --erl "+P 1000000" -S mix phx.server`
-  * Run endpoint server: `iex --sname gate_way --cookie aaa --erl "+P 1000000" -S mix`
-
-## Recommended environments
-
-  * Elixir version 1.12.1 (Erlang/OTP 23)
-  * Phoenix version 1.5.13
-  * Postgres ~> 12.4.0
-
 ## Problem
 
   * The goal of this exercise is to implement a very basic version of Twitter.
@@ -46,6 +23,12 @@
     documentation about running the code (readme.md), implementation details and design
     choices.
 
+## Recommended environments
+
+  * Elixir version 1.12.1 (Erlang/OTP 23)
+  * Phoenix version 1.5.13
+  * Postgres ~> 12.4.0
+
 ## Tech Stack Used
 
   * Phoenix framework + Elixir/Erlang.
@@ -55,11 +38,28 @@
   * Scrivener for pagination.
   * Gigalixir for releasing live production (built on top of Heroku).
 
+## Git Repo Description
+
+  * Repo `yojee_assignment_sep_29_simple_twitter_app` for web server. 
+  * Repo `gate_way` for Endpoint Server.
+
+## To start your Phoenix server
+
+  * Install dependencies with `mix deps.get`
+  * Create and migrate your database with `mix ecto.setup`
+  * Install Node.js dependencies with `npm install` inside the `assets` directory
+  * Start Phoenix endpoint with `iex -S mix phx.server`
+
 ## Run Unit Tests
 
   * Test entire module: `mix test`
   * Test app module: `mix test test/yojee_assignment_sep_29_simple_twitter_app/`
   * Test webapp module: `mix test test/yojee_assignment_sep_29_simple_twitter_app_web/`
+
+## Run nodes:
+
+  * Run web server: `iex --sname app --cookie aaa --erl "+P 1000000" -S mix phx.server`
+  * Run endpoint server: `iex --sname gate_way --cookie aaa --erl "+P 1000000" -S mix`
 
 ## Scaling Solution
 
