@@ -10,10 +10,10 @@
 
 ## Run multiple nodes:
 
-  * Run over default processes: `iex --erl "+P 1_000_000" -S mix`
+  * Run over default processes: `iex --erl "+P 1000000" -S mix`
   * Open RPC between 2 node: 
-    - Node 1: `iex --name a@172.0.0.1 --cookie cookie_string -S mix`
-    - Node 2: `iex --name b@172.0.0.1 --cookie cookie_string -S mix`
+    - Node 1: `iex --sname app --cookie aaa --erl "+P 1000000" -S mix phx.server`
+    - Node 2: `iex --sname gate_way --cookie aaa --erl "+P 1000000" -S mix`
 
 ## Recommended environments
 
@@ -59,10 +59,12 @@
   * Test app module: `mix test test/yojee_assignment_sep_29_simple_twitter_app/`
   * Test webapp module: `mix test test/yojee_assignment_sep_29_simple_twitter_app_web/`
 
-## Deploy to Gigalixir
+## Scaling Solution
 
-  * SET MIX_ENV=prod
-  * SET SECRET_KEY_BASE="$(mix phx.gen.secret)"
-  * SET DATABASE_URL="db_url"
-  * mix distillery.release --env=prod
-  * git push gigalixir
+  * 1_000 TPS: A single BEAM could handle 1_000 TPS very easy with default config.
+  * 1_000_000 TPS:
+    - Increase number of node and pool_size.
+    - Every node only handles a single endpoint.
+    - When requests are sent to web server, it will cast these requests to endpoint server depend on kind of       endpoint through RPC. Look at the under picture:
+    ![alt text](/images/user.png/1m_tweets.JPG)
+
