@@ -64,5 +64,15 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.TimelineTest do
       tweet = tweet_fixture()
       assert %Ecto.Changeset{} = Timeline.change_tweet(tweet)
     end
+
+    test "truncate table return a tweet" do
+      assert {:ok, %Tweet{}} = Timeline.truncate_tweets_table
+    end
+
+    test "update retweets count return a tweet" do
+      tweet = tweet_fixture()
+      {:ok, result} = Timeline.increase_retweets_count(tweet)
+      assert result.retweets_count == tweet.retweets_count + 1
+    end
   end
 end
