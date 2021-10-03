@@ -64,8 +64,8 @@
   * 1_000 TPS: A single BEAM could handle 1_000 TPS very easy with default config.
   * 1_000_000 TPS:
     - Increase number of node and pool_size.
-    - Every node only handles a single endpoint.
+    - Every endpoint node only handles a single endpoint.
     - When requests are sent to web server, it will cast these requests to endpoint server depend on kind of       endpoint through RPC. Look at the picture below:
 
     ![alt text](../main/assets/static/images/1m_tweets.JPG)
-
+                                    System design for 1M TPS
