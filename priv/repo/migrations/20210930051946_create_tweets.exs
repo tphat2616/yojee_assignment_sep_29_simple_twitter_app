@@ -9,6 +9,5 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Repo.Migrations.CreateTweets do
 
       timestamps()
     end
-
   end
 end

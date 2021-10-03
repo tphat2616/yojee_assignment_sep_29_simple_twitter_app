@@ -3,7 +3,7 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline.Tweet do
   import Ecto.Changeset
 
   @optional_key []
-  
+
   @required_key [
     :body
   ]
@@ -19,13 +19,13 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline.Tweet do
   @doc false
   def changeset(%YojeeAssignmentSep29SimpleTwitterApp.Timeline.Tweet{} = tweet, params \\ %{}) do
     tweet
-    |> cast(params,  @optional_key ++ @required_key)
+    |> cast(params, @optional_key ++ @required_key)
     |> validate_required(@required_key)
     |> check_body_size()
   end
 
   defp check_body_size(changeset) do
     changeset
-    |> validate_length(:body,mix: 1, max: 140)
+    |> validate_length(:body, mix: 1, max: 140)
   end
 end

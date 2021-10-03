@@ -110,44 +110,56 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.Timeline do
   end
 
   defp broadcast({:error, _reason} = error, _event), do: error
+
   defp broadcast({:ok, tweet}, event) do
-    Phoenix.PubSub.broadcast(YojeeAssignmentSep29SimpleTwitterApp.PubSub, "tweets_lobby", {event, tweet})
+    Phoenix.PubSub.broadcast(
+      YojeeAssignmentSep29SimpleTwitterApp.PubSub,
+      "tweets_lobby",
+      {event, tweet}
+    )
+
     {:ok, tweet}
   end
 
   def increase_retweets_count(%Tweet{id: id}) do
-    {1, [tweet]} = from(t in Tweet, where: t.id == ^id, select: t) 
-                   |> Repo.update_all(inc: [retweets_count: 1])
+    {1, [tweet]} =
+      from(t in Tweet, where: t.id == ^id, select: t)
+      |> Repo.update_all(inc: [retweets_count: 1])
+
     broadcast({:ok, tweet}, :tweet_updated)
   end
 
   def create_1_000_tweets do
     for _x <- 1..1_000 do
-        spawn(fn ->
-            create_tweet(%{body: "Test#{:rand.uniform(1000)}"})
-        end)
+      spawn(fn ->
+        create_tweet(%{body: "Test#{:rand.uniform(1000)}"})
+      end)
     end
+
     {:ok, %Tweet{}}
     |> broadcast(:create_1_000_tweets)
   end
 
   def create_1_000_000_tweets do
     for _x <- 1..1_000_000 do
-        spawn(fn ->
-            :rpc.cast(:"b@127.0.0.1", :"Elixir.GateWay", :create_tweet, [%{body: "Test#{:rand.uniform(1000)}"}])
-        end)
+      spawn(fn ->
+        :rpc.cast(:"b@127.0.0.1", :"Elixir.GateWay", :create_tweet, [
+          %{body: "Test#{:rand.uniform(1000)}"}
+        ])
+      end)
     end
   end
 
   def truncate_tweets_table() do
     Repo.query!("TRUNCATE TABLE tweets")
+
     {:ok, %Tweet{}}
     |> broadcast(:truncate_table)
   end
 
   def paginate_tweets(params \\ []) do
     Tweet
-    |> order_by([t], [desc: t.retweets_count, desc: t.inserted_at])
+    |> order_by([t], desc: t.retweets_count, desc: t.inserted_at)
     |> Repo.paginate(params)
   end
 end

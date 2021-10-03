@@ -16,7 +16,7 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.TweetComponent do
           <%= @tweet.body %>
         </div>
       </div>
-
+    
       <div class="row">
         <div class="column tweet-button-column">
           <a href="#" phx-click="retweet" phx-target="<%= @myself %>">

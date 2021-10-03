@@ -31,11 +31,21 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.Telemetry do
       ),
 
       # Database Metrics
-      summary("yojee_assignment_sep_29_simple_twitter_app.repo.query.total_time", unit: {:native, :millisecond}),
-      summary("yojee_assignment_sep_29_simple_twitter_app.repo.query.decode_time", unit: {:native, :millisecond}),
-      summary("yojee_assignment_sep_29_simple_twitter_app.repo.query.query_time", unit: {:native, :millisecond}),
-      summary("yojee_assignment_sep_29_simple_twitter_app.repo.query.queue_time", unit: {:native, :millisecond}),
-      summary("yojee_assignment_sep_29_simple_twitter_app.repo.query.idle_time", unit: {:native, :millisecond}),
+      summary("yojee_assignment_sep_29_simple_twitter_app.repo.query.total_time",
+        unit: {:native, :millisecond}
+      ),
+      summary("yojee_assignment_sep_29_simple_twitter_app.repo.query.decode_time",
+        unit: {:native, :millisecond}
+      ),
+      summary("yojee_assignment_sep_29_simple_twitter_app.repo.query.query_time",
+        unit: {:native, :millisecond}
+      ),
+      summary("yojee_assignment_sep_29_simple_twitter_app.repo.query.queue_time",
+        unit: {:native, :millisecond}
+      ),
+      summary("yojee_assignment_sep_29_simple_twitter_app.repo.query.idle_time",
+        unit: {:native, :millisecond}
+      ),
 
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),

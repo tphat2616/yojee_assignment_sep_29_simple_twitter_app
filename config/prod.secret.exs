@@ -23,12 +23,13 @@ secret_key_base =
     You can generate one by calling: mix phx.gen.secret
     """
 
-config :yojee_assignment_sep_29_simple_twitter_app, YojeeAssignmentSep29SimpleTwitterAppWeb.Endpoint,
-  http: [
-    port: String.to_integer(System.get_env("PORT") || "4000"),
-    transport_options: [socket_opts: [:inet6]]
-  ],
-  secret_key_base: secret_key_base
+config :yojee_assignment_sep_29_simple_twitter_app,
+       YojeeAssignmentSep29SimpleTwitterAppWeb.Endpoint,
+       http: [
+         port: String.to_integer(System.get_env("PORT") || "4000"),
+         transport_options: [socket_opts: [:inet6]]
+       ],
+       secret_key_base: secret_key_base
 
 # ## Using releases (Elixir v1.9+)
 #

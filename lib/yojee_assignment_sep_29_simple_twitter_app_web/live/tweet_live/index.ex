@@ -30,7 +30,6 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.Index do
     |> assign(:tweet, Timeline.get_tweet!(id))
   end
 
-
   defp apply_action(socket, :index, _params) do
     socket
     |> assign(:page_title, "Listing Tweets")
