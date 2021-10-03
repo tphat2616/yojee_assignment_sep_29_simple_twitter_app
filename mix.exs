@@ -48,7 +48,8 @@ defmodule YojeeAssignmentSep29SimpleTwitterApp.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:scrivener_ecto, "~> 2.7"},
-      {:scrivener_html, ">= 1.4.1"}
+      {:scrivener_html, ">= 1.4.1"},
+      {:distillery, "~> 2.1"}
     ]
   end
 

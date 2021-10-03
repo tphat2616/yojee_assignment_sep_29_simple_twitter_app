@@ -55,4 +55,9 @@ To start your Phoenix server:
   * Test entire module: `mix test`
   * Test app module: `mix test test/yojee_assignment_sep_29_simple_twitter_app/`
   * Test webapp module: `mix test test/yojee_assignment_sep_29_simple_twitter_app_web/`
-
+## Deploy to Gigalixir
+  * SET MIX_ENV=prod
+  * SET SECRET_KEY_BASE="$(mix phx.gen.secret)"
+  * SET DATABASE_URL="db_url"
+  * mix distillery.release --env=prod
+  * git push gigalixir
