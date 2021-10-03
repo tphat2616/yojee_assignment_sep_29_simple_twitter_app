@@ -68,4 +68,3 @@
     - When requests are sent to web server, it will cast these requests to endpoint server depend on kind of       endpoint through RPC. Look at the picture below:
 
     ![alt text](../main/assets/static/images/1m_tweets.JPG)
-                                    System design for 1M TPS
