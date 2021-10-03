@@ -1,23 +1,25 @@
 # Yojee's assignment sep-29: simple twitter app
 
-## To start your Phoenix server:
+## Git Repo
+
+  * Repo `yojee_assignment_sep_29_simple_twitter_app` for web server. 
+  * Repo `gate_way` for Endpoint Server.
+
+## To start your Phoenix server
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Install Node.js dependencies with `npm install` inside the `assets` directory
   * Start Phoenix endpoint with `iex -S mix phx.server`
-  * Testing with unit tests: `mix test`
 
-## Run multiple nodes:
+## Run nodes:
 
-  * Run over default processes: `iex --erl "+P 1000000" -S mix`
-  * Open RPC between 2 node: 
-    - Node 1: `iex --sname app --cookie aaa --erl "+P 1000000" -S mix phx.server`
-    - Node 2: `iex --sname gate_way --cookie aaa --erl "+P 1000000" -S mix`
+  * Run web server: `iex --sname app --cookie aaa --erl "+P 1000000" -S mix phx.server`
+  * Run endpoint server: `iex --sname gate_way --cookie aaa --erl "+P 1000000" -S mix`
 
 ## Recommended environments
 
-  * Elixir version 1.12.1 (Erlang/OTP 22)
+  * Elixir version 1.12.1 (Erlang/OTP 23)
   * Phoenix version 1.5.13
   * Postgres ~> 12.4.0
 
@@ -44,9 +46,9 @@
     documentation about running the code (readme.md), implementation details and design
     choices.
 
-## Tech Stack
+## Tech Stack Used
 
-  * Phoenix framework + Elixir.
+  * Phoenix framework + Elixir/Erlang.
   * Phoenix LiveView.
   * Phoenix PubSub.
   * Erlang-OTP/rpc.
