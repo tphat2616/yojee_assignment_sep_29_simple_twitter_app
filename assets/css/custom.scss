@@ -18,6 +18,10 @@
   color: #0069E0;
 }
 
+.tweet-button[disabled] { 
+  pointer-events: none;
+}
+
 .tweet-button-dashboard {
   margin: 10px 0 10px 10px;
   padding: 10px;
