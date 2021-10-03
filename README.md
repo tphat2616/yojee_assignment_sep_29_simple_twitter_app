@@ -1,12 +1,15 @@
 # Yojee's assignment sep-29: simple twitter app
 
-To start your Phoenix server:
+## To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Install Node.js dependencies with `npm install` inside the `assets` directory
   * Start Phoenix endpoint with `iex -S mix phx.server`
   * Testing with unit tests: `mix test`
+
+## Run multiple nodes:
+
   * Run over default processes: `iex --erl "+P 1_000_000" -S mix`
   * Open RPC between 2 node: 
     - Node 1: `iex --name a@172.0.0.1 --cookie cookie_string -S mix`
@@ -55,7 +58,9 @@ To start your Phoenix server:
   * Test entire module: `mix test`
   * Test app module: `mix test test/yojee_assignment_sep_29_simple_twitter_app/`
   * Test webapp module: `mix test test/yojee_assignment_sep_29_simple_twitter_app_web/`
+
 ## Deploy to Gigalixir
+
   * SET MIX_ENV=prod
   * SET SECRET_KEY_BASE="$(mix phx.gen.secret)"
   * SET DATABASE_URL="db_url"
