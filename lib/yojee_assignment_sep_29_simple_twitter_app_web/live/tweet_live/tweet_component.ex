@@ -20,16 +20,16 @@ defmodule YojeeAssignmentSep29SimpleTwitterAppWeb.TweetLive.TweetComponent do
       <div class="row">
         <div class="column tweet-button-column">
           <a href="#" phx-click="retweet" phx-target="<%= @myself %>">
-            Retweet
+            <img src="/images/refreshing.png" class="icon-img"/>
           </a>
-          <span><%= @tweet.retweets_count %></span>
+          <span style="color: blue"><%= @tweet.retweets_count %></span>
         </div>
         <div class="column tweet-button-column">
           <%= live_patch to: Routes.tweet_index_path(@socket, :edit, @tweet.id) do %>
-            Edit
+            <img src="/images/edit.png" class="icon-img"/>
           <% end %>
           <%= link to: "#", phx_click: "delete", phx_value_id: @tweet.id do %>
-            Delete
+            <img src="/images/trash.png" class="icon-img"/>
           <% end %>
         </div>
       </div>
